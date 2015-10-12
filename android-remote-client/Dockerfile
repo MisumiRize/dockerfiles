@@ -15,7 +15,6 @@ ONBUILD COPY . $PROJECT
 ADD https://raw.githubusercontent.com/travis-ci/travis-cookbooks/master/community-cookbooks/android-sdk/files/default/android-wait-for-emulator /usr/local/bin/android-wait-for-emulator
 COPY android-send-menu-key /usr/local/bin/android-send-menu-key
 RUN echo "sdk.dir=$ANDROID_HOME" > local.properties && \
-    chmod +x /usr/local/bin/android-wait-for-emulator && \
-    chmod +x /usr/local/bin/android-send-menu-key
+    chmod +x /usr/local/bin/android-wait-for-emulator
 
 ENTRYPOINT /etc/init.d/haproxy start && android-wait-for-emulator && android-send-menu-key && ./gradlew
